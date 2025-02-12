@@ -5,7 +5,7 @@ import java.util.Enumeration;
 
 public class _3_TestingReachability {
     public static void main(String[] args) throws IOException{
-        InetAddress address = InetAddress.getByName("www.facebook.com");
+        InetAddress address = InetAddress.getByName("www.google.com");
         
         // testing reachability using isReachable(int timeout) function
         System.out.println(address.isReachable(2000));
@@ -38,3 +38,4 @@ public class _3_TestingReachability {
 
     }
 }
+//lab8

@@ -18,13 +18,38 @@ public class serverthread {
             BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             BufferedReader console = new BufferedReader(new InputStreamReader(System.in));  
             PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
-            String clientMessage ;
-            while((clientMessage = in.readLine())!=null){ 
-                System.out.println("Client: "+clientMessage);
-              System.out.print("Enter message for client: ");
-              String serverMessage = console.readLine();
-                out.println(serverMessage);
+
+            Thread t1= new Thread(()->{
+                try{
+                    String serverMessage;
+                    while((serverMessage = in.readLine())!=null){
+                        System.out.println("Client: "+serverMessage);
+                    
+                    }
                 }
+                catch(Exception e){
+                    e.printStackTrace();
+                }
+            });
+           
+
+            Thread t2= new Thread(()->{
+                try{
+                 
+                   while (true) {
+                    String serverMessage;
+                    System.out.print("Enter message for client: ");
+                    serverMessage = console.readLine();
+                    out.println(serverMessage);
+                   }
+                }
+                catch(Exception e){
+                    e.printStackTrace();
+                }
+            });
+            t1.start();
+            t2.start();
+            
             } catch (Exception e) {
                 e.printStackTrace();
             }
